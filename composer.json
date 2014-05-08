@@ -1,0 +1,27 @@
+{
+    "name": "spiffy/spiffy-assetic",
+    "authors": [
+        {
+            "name": "Kyle Spraggs",
+            "email": "theman@spiffyjr.me"
+        }
+    ],
+    "description": "Spiffy\\AsseticModule is a module for Zend Framework to help manage assets.",
+    "require": {
+        "php": ">=5.4.11",
+        "spiffy/spiffy-assetic": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spiffy\\AsseticModule\\": [
+                "src/",
+                "test/"
+            ]
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0-dev"
+        }
+    }
+}
