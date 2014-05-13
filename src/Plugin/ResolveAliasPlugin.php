@@ -68,9 +68,20 @@ class ResolveAliasPlugin implements Plugin, ServiceLocatorAwareInterface
         $refl = new \ReflectionClass($module);
         $path = dirname($refl->getFileName());
 
-        if (!file_exists($path . '/src')) {
-            $path = realpath($path . '/../../');
+        $parts = explode('/', $path);
+
+        // So hackalicious it makes me feel dirty.
+        $remove = false;
+        foreach ($parts as $key => $part) {
+            if ($part == 'src') {
+                $remove = true;
+            }
+            if ($remove) {
+                unset($parts[$key]);
+            }
         }
+
+        $path = implode('/', $parts);
 
         $this->pathCache[$moduleName] = $path;
         return $path;
