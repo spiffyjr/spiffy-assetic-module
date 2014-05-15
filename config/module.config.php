@@ -56,7 +56,9 @@ return [
 
             // assetic filters
             'Assetic\Filter\LessFilter' => 'Spiffy\AsseticModule\Filter\LessFilterFactory',
-            'Spiffy\AsseticModule\Filter\CssModulePathFilter' => 'Spiffy\AsseticModule\Filter\CssModulePathFilterFactory',
+
+            // spiffy assetic filters
+            'Spiffy\Assetic\Filter\PhpCssAliasEmbedFilter' => 'Spiffy\AsseticModule\Filter\PhpCssAliasEmbedFilterFactory',
 
             // mvc listeners
             'Spiffy\Assetic\Mvc\RouteLoader' => 'Spiffy\Assetic\Mvc\RouteLoaderFactory',
@@ -75,9 +77,8 @@ return [
         'output_dir' => 'public',
         'assets' => [],
         'filters' => [
-            'cssembed' => 'Assetic\Filter\PhpCssEmbedFilter',
             'cssmin' => 'Assetic\Filter\CssMinFilter',
-            'cssmodulepath' => 'Spiffy\AsseticModule\Filter\CssModulePathFilter',
+            'cssaliasembed' => 'Spiffy\Assetic\Filter\PhpCssAliasEmbedFilter',
             'cssrewrite' => 'Assetic\Filter\CssRewriteFilter',
             'jsmin' => 'Assetic\Filter\JSMinFilter',
             'less' => 'Assetic\Filter\LessFilter',
