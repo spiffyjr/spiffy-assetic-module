@@ -61,20 +61,24 @@ class ResolveAliasPlugin implements Plugin, ServiceLocatorAwareInterface
             return $this->pathCache[$moduleName];
         }
 
-        /** @var \Zend\ModuleManager\ModuleManager $moduleManager */
-        $moduleManager = $this->getServiceLocator()->get('ModuleManager');
-
-        if (!$moduleManager->getModule($moduleName)) {
-            return false;
-        }
-
-        $module = $moduleManager->getModule($moduleName);
+        $module = $this->getServiceLocator()->get('ModuleManager')->getModule($moduleName);
         $refl = new \ReflectionClass($module);
         $path = dirname($refl->getFileName());
 
-        if (!file_exists($path . '/src')) {
-            $path = realpath($path . '/../../');
+        $parts = explode('/', $path);
+
+        // So hackalicious it makes me feel dirty.
+        $remove = false;
+        foreach ($parts as $key => $part) {
+            if ($part == 'src') {
+                $remove = true;
+            }
+            if ($remove) {
+                unset($parts[$key]);
+            }
         }
+
+        $path = implode('/', $parts);
 
         $this->pathCache[$moduleName] = $path;
         return $path;
