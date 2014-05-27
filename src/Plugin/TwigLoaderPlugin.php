@@ -65,8 +65,14 @@ class TwigLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
 
         $count = 0;
         foreach ($loaders as $loader) {
-            if ($loader instanceof \Twig_Loader_Filesystem) {
+            if ($loader instanceof \Twig_Loader_Filesystem && $loader->getPaths()) {
                 $finder->in($loader->getPaths());
+
+                /** @var \Symfony\Component\Finder\SplFileInfo */
+                foreach ($finder as $template) {
+                    $count++;
+                    $am->addResource(new TwigResource($loader, $template->getRelativePathname()), 'twig');
+                }
             } else if ($loader instanceof MapLoader) {
                 $refl = new \ReflectionClass($loader);
                 $map = $refl->getProperty('map');
@@ -78,12 +84,6 @@ class TwigLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
                     $am->addResource(new TwigResource($loader, $name), 'twig');
                 }
             }
-        }
-
-        /** @var \Symfony\Component\Finder\SplFileInfo */
-        foreach ($finder as $template) {
-            $count++;
-            $am->addResource(new TwigResource($loader, $template->getRelativePathname()), 'twig');
         }
     }
 }
