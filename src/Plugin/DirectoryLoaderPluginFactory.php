@@ -17,6 +17,9 @@ class DirectoryLoaderPluginFactory implements FactoryInterface
         /** @var \Spiffy\AsseticModule\ModuleOptions $options */
         $options = $services->get('Spiffy\AsseticModule\ModuleOptions');
 
-        return new DirectoryLoaderPlugin($options->getDirectories());
+        return new DirectoryLoaderPlugin(
+            $options->getDirectories(),
+            $options->getCacheDir()
+        );
     }
 }
