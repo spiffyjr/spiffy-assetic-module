@@ -19,6 +19,11 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var string
      */
+    protected $cacheDir = 'data/cache/assetic';
+
+    /**
+     * @var string
+     */
     protected $rootDir = './';
 
     /**
@@ -256,5 +261,21 @@ class ModuleOptions extends AbstractOptions
     public function getParsers()
     {
         return $this->parsers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCacheDir()
+    {
+        return $this->cacheDir;
+    }
+
+    /**
+     * @param string $cacheDir
+     */
+    public function setCacheDir($cacheDir)
+    {
+        $this->cacheDir = $cacheDir;
     }
 }

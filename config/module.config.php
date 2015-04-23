@@ -73,6 +73,7 @@ return [
     'spiffy-assetic' => [
         'debug' => false,
         'autoload' => false,
+        'cache_dir' => 'data/cache/assetic',
         'root_dir' => './',
         'output_dir' => 'public',
         'assets' => [],
