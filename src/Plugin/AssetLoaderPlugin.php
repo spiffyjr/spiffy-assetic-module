@@ -42,9 +42,9 @@ class AssetLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
 
             $inputs = isset($asset['inputs']) ? $asset['inputs'] : [];
             $filters = isset($asset['filters']) ? $asset['filters'] : [];
-            $options = isset($asset['options']) ? $asset['options'] : [];
+            $opts= isset($asset['options']) ? $asset['options'] : [];
 
-            $manager->set($name, $factory->createAsset($inputs, $filters, $options));
+            $manager->set($name, $factory->createAsset($inputs, $filters, $opts));
         }
     }
 }

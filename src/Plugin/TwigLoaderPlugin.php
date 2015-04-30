@@ -20,6 +20,17 @@ class TwigLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
 {
     use ServiceLocatorAwareTrait;
 
+    /** @var string $cacheDir */
+    private $cacheDir;
+
+    /**
+     * @param string $cacheDir
+     */
+    public function __construct($cacheDir)
+    {
+        $this->cacheDir = $cacheDir;
+    }
+
     /**
      * @param Manager $events
      */
@@ -52,7 +63,7 @@ class TwigLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
 
         $formulaLoader = new CachedFormulaLoader(
             new TwigFormulaLoader($twig),
-            new ConfigCache('data/cache/assetic'),
+            new ConfigCache($this->cacheDir),
             $am->isDebug()
         );
         $am->setLoader('twig', $formulaLoader);

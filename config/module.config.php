@@ -48,7 +48,6 @@ return [
             'Spiffy\AsseticModule\Plugin\AssetLoaderPlugin' => 'Spiffy\AsseticModule\Plugin\AssetLoaderPlugin',
             'Spiffy\AsseticModule\Plugin\FilterLoaderPlugin' => 'Spiffy\AsseticModule\Plugin\FilterLoaderPlugin',
             'Spiffy\AsseticModule\Plugin\ResolveAliasPlugin' => 'Spiffy\AsseticModule\Plugin\ResolveAliasPlugin',
-            'Spiffy\AsseticModule\Plugin\TwigLoaderPlugin' => 'Spiffy\AsseticModule\Plugin\TwigLoaderPlugin',
         ],
         'factories' => [
             // twig
@@ -65,6 +64,7 @@ return [
 
             // plugins
             'Spiffy\Assetic\Plugin\DirectoryLoaderPlugin' => 'Spiffy\AsseticModule\Plugin\DirectoryLoaderPluginFactory',
+            'Spiffy\AsseticModule\Plugin\TwigLoaderPlugin' => 'Spiffy\AsseticModule\Plugin\TwigLoaderPluginFactory',
 
             'Spiffy\Assetic\AsseticService' => 'Spiffy\AsseticModule\AsseticServiceFactory',
             'Spiffy\AsseticModule\ModuleOptions' => 'Spiffy\AsseticModule\ModuleOptionsFactory',
