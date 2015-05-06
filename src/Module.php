@@ -23,7 +23,7 @@ class Module implements ConfigProviderInterface, ConsoleUsageProviderInterface
     {
         return [
             // Describe available commands
-            'assetic dump' => 'dump assets once',
+            'assetic dump <filename>' => 'dump assets or a single asset once',
             'assetic watch' => 'dump assets when changes are detected',
         ];
     }

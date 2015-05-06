@@ -6,7 +6,7 @@ return [
             'routes' => [
                 'spiffy-assetic.dump' => [
                     'options' => [
-                        'route' => 'assetic dump [--verbose|-v]',
+                        'route' => 'assetic dump [<filename>] [--verbose|-v]',
                         'defaults' => [
                             'controller' => 'Spiffy\AsseticModule\Controller\ConsoleController',
                             'action' => 'dump'
@@ -101,9 +101,9 @@ return [
             'image' => ['tag' => 'image', 'output' => 'image/*', 'single' => true],
         ],
         'plugins' => [
-            'asset_loader' => 'Spiffy\AsseticModule\Plugin\AssetLoaderPlugin',
             'filter_loader' => 'Spiffy\AsseticModule\Plugin\FilterLoaderPlugin',
             'resolve_alias' => 'Spiffy\AsseticModule\Plugin\ResolveAliasPlugin',
+            'asset_loader' => 'Spiffy\AsseticModule\Plugin\AssetLoaderPlugin',
         ],
     ],
     'zfctwig' => [

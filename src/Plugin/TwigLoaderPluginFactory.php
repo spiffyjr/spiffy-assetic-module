@@ -2,7 +2,6 @@
 
 namespace Spiffy\AsseticModule\Plugin;
 
-use Spiffy\Assetic\Plugin\DirectoryLoaderPlugin;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

@@ -18,7 +18,7 @@ class AssetLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
      */
     public function plug(Manager $events)
     {
-        $events->on(AsseticService::EVENT_LOAD, [$this, 'onLoad']);
+        $events->on(AsseticService::EVENT_LOAD, [$this, 'onLoad'], -1000);
     }
 
 
@@ -42,7 +42,7 @@ class AssetLoaderPlugin implements Plugin, ServiceLocatorAwareInterface
 
             $inputs = isset($asset['inputs']) ? $asset['inputs'] : [];
             $filters = isset($asset['filters']) ? $asset['filters'] : [];
-            $opts= isset($asset['options']) ? $asset['options'] : [];
+            $opts = isset($asset['options']) ? $asset['options'] : [];
 
             $manager->set($name, $factory->createAsset($inputs, $filters, $opts));
         }

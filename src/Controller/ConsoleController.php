@@ -30,8 +30,16 @@ class ConsoleController extends AbstractActionController
         $console = $this->getServiceLocator()->get('console');
         $am = $this->getAssetManager();
 
+        $filename = $this->getEvent()->getRouteMatch()->getParam('filename');
+
         // print the header
-        $console->writeLine(sprintf('Dumping all assets.'));
+        if ($filename) {
+            $console->write('Dumping ');
+            $console->writeLine($filename, ColorInterface::YELLOW);
+        } else {
+            $console->writeLine('Dumping all assets.');
+        }
+
         $console->write('Debug mode is ');
         $console->writeLine($am->isDebug() ? 'on' : 'off', ColorInterface::YELLOW);
         $console->writeLine('');
@@ -39,11 +47,20 @@ class ConsoleController extends AbstractActionController
         /** @var \Zend\Console\Request $request */
         $request = $this->getRequest();
 
-        $this->asseticService->dumpAssets(
-            $this->options->getOutputDir(),
-            $this->options->getVariables(),
-            $request->getParam('verbose')
-        );
+        if ($filename) {
+            $this->asseticService->dumpAsset(
+                $filename,
+                $this->options->getOutputDir(),
+                $this->options->getVariables(),
+                $request->getParam('verbose')
+            );
+        } else {
+            $this->asseticService->dumpAssets(
+                $this->options->getOutputDir(),
+                $this->options->getVariables(),
+                $request->getParam('verbose')
+            );
+        }
     }
 
     public function watchAction()
